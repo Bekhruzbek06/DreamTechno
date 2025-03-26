@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Xorazm Telefon Bozori</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="Bosh1.css">
+</head>
+<body>
+  <!-- Top Navigation -->
+  <header class="main-header">
+    <div class="container">
+      <div class="logo">
+        <h1>Xorazm <span>Telefon Savdosi</span>
+      </div>
+      <div class="search-box">
+        <input type="text" placeholder="Mahsulot qidirish...">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+      <div class="user-actions">
+        <a href="savat1.html"><i class="fas fa-shopping-cart"></i> Savat   <span class="nav-cart-count" id="navCartCount">0</span></a>
+          
+        <a href="#" id="authButton"><i class="fas fa-user"></i> <span id="authText">Kirish</span></a>
+      </div>
+    </div>
+  </header>
+
+ <!-- Navigation menu qismiga qo'shing -->
+<nav class="main-nav">
+  <div class="container">
+    <ul>
+      <li><a href="Bosh1.html"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+      <li><a href="Mahsulotlar1.html"><i class="fas fa-mobile-alt"></i> Telefonlar</a></li>
+      <li><a href="Aksessuarlar1.html"><i class="fas fa-headphones"></i> Aksessuarlar</a></li>
+      <li>
+        <a href="savat1.html">
+          <i class="fas fa-shopping-cart"></i> Savat
+          <span class="nav-cart-count" id="navCartCount">0</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .nav-cart-count {
+    margin-left: 5px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+</style>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Yangi kelgan telefonlar</h2>
+        <p>Eng so'nggi model telefonlarni bizda toping</p>
+        <a href="Mahsulotlar.html" class="btn">Hozir ko'rish</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products">
+    <div class="container">
+      <h2 class="section-title">Yangi mahsulotlar</h2>
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="product-badge">Yangi</div>
+          <div class="product-image">
+            <img src="images/sms.jpg" alt="Samsung Galaxy S23">
+          </div>
+          <div class="product-info">
+            <h3>Samsung Galaxy S23</h3>
+            <div class="product-price">
+              <span class="current-price">8 000 000 so'm</span>
+              <span class="old-price">8 500 000 so'm</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-sm" onclick="addToCart('Samsung Galaxy S23', 8000000)">
+                <i class="fas fa-shopping-cart"></i> Savatga
+              </button>
+              <a href="product-detail.html" class="btn btn-outline">Batafsil</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="product-badge">Chegirma</div>
+          <div class="product-image">
+            <img src="images/ph.png" alt="iPhone 15 Pro">
+          </div>
+          <div class="product-info">
+            <h3>iPhone 15 Pro</h3>
+            <div class="product-price">
+              <span class="current-price">10 000 000 so'm</span>
+              <span class="old-price">11 000 000 so'm</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-sm" onclick="addToCart('iPhone 15 Pro', 10000000)">
+                <i class="fas fa-shopping-cart"></i> Savatga
+              </button>
+              <a href="product-detail.html" class="btn btn-outline">Batafsil</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="images/red.webp" alt="Redmi Note 13">
+          </div>
+          <div class="product-info">
+            <h3>Redmi Note 13</h3>
+            <div class="product-price">
+              <span class="current-price">3 000 000 so'm</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-sm" onclick="addToCart('Redmi Note 13', 3000000)">
+                <i class="fas fa-shopping-cart"></i> Savatga
+              </button>
+              <a href="product-detail.html" class="btn btn-outline">Batafsil</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="product-badge">Arzon</div>
+          <div class="product-image">
+            <img src="images/Artel.webp" alt="Artel Gap yo'q">
+          </div>
+          <div class="product-info">
+            <h3>Artel Gap yo'q</h3>
+            <div class="product-price">
+              <span class="current-price">500 000 so'm</span>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-sm" onclick="addToCart('Artel Gap yo\'q', 500000)">
+                <i class="fas fa-shopping-cart"></i> Savatga
+              </button>
+              <a href="product-detail.html" class="btn btn-outline">Batafsil</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="feature-box">
+        <i class="fas fa-truck"></i>
+        <h3>Tez yetkazib berish</h3>
+        <p>Buyurtmangiz 1-3 kun ichida yetkazib beriladi</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Kafolat xizmati</h3>
+        <p>Barcha mahsulotlarimiz rasmiy kafolatga ega</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-undo"></i>
+        <h3>Qaytarish imkoniyati</h3>
+        <p>14 kun ichida mahsulotni qaytarishingiz mumkin</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-headset"></i>
+        <h3>24/7 Yordam</h3>
+        <p>Har qanday savol uchun murojaat qiling</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-column">
+        <h3>Xorazm Telefon</h3>
+        <p>Eng yaxshi narxlarda sifatli telefonlar va aksessuarlar</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-telegram"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3>Foydali havolalar</h3>
+        <ul>
+          <li><a href="bosh1.html">Bosh sahifa</a></li>
+          <li><a href="mahsulotlar1.html">Mahsulotlar</a></li>
+          <li><a href="#">Aksiyalar</a></li>
+          <li><a href="#">Biz haqimizda</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Aloqa</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> Urganch shahri, Xorazm</li>
+          <li><i class="fas fa-phone"></i> +998 91 123 45 67</li>
+          <li><i class="fas fa-envelope"></i> info@xorazmtelefon.uz</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2024 Xorazm Telefon Bozori. Barcha huquqlar himoyalangan.</p>
+    </div>
+  </footer>
+
+  <script>
+    // DOM yuklanganida
+    document.addEventListener('DOMContentLoaded', function() {
+      const authButton = document.getElementById('authButton');
+      const authText = document.getElementById('authText');
+      
+      // Foydalanuvchi ma'lumotlarini tekshirish
+      const user = JSON.parse(localStorage.getItem('currentUser')) || 
+                   JSON.parse(sessionStorage.getItem('currentUser'));
+
+      if (user) {
+        // Agar foydalanuvchi kirgan bo'lsa
+        authText.textContent = 'Kabinet';
+        authButton.href = 'kabinet1.html';
+      } else {
+        // Agar foydalanuvchi kirmagan bo'lsa
+        authText.textContent = 'Kirish';
+        authButton.href = 'login1.html';
+      }
+
+      // Savat sonini yangilash
+      updateCartCount();
+    });
+
+    // Savatga qo'shish funksiyasi
+    function addToCart(productName, price) {
+      const product = {
+        name: productName,
+        price: price,
+        quantity: 1,
+        date: new Date().toISOString()
+      };
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingProduct = cart.find(item => item.name === productName);
+      
+      if (existingProduct) {
+        existingProduct.quantity += 1;
+      } else {
+        cart.push(product);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      showNotification(`${productName} savatga qo'shildi!`);
+      updateCartCount();
+    }
+
+    // Xabar ko'rsatish
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.className = 'notification';
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.classList.add('show');
+      }, 100);
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+          document.body.removeChild(notification);
+        }, 300);
+      }, 3000);
+    }
+
+    // Savat sonini yangilash
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((total, product) => total + product.quantity, 0);
+      const cartCountElements = document.querySelectorAll('.cart-count');
+      
+      cartCountElements.forEach(el => {
+        el.textContent = totalItems;
+        el.style.display = totalItems > 0 ? 'inline-block' : 'none';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      const user = JSON.parse(localStorage.getItem('currentUser')) || 
+                   JSON.parse(sessionStorage.getItem('currentUser'));
+      
+      if (user) {
+        document.getElementById('authText').textContent = 'Kabinet';
+        document.getElementById('authButton').href = 'kabinet1.html';
+      }
+      // Har bir sahifaning JavaScript qismiga qo'shing
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  
+  // Barcha savat ko'rsatkichlarini yangilash
+  document.querySelectorAll('.cart-count-badge, .floating-cart-count, .nav-cart-count, .cart-count')
+    .forEach(el => {
+      el.textContent = totalItems;
+      el.style.display = totalItems > 0 ? 'flex' : 'none';
+    });
+}
+
+// Sahifa yuklanganda va savat o'zgartirilganda yangilash
+document.addEventListener('DOMContentLoaded', updateCartCount);
+window.addEventListener('storage', updateCartCount); // Agar boshqa tabda o'zgartirilsa
+
+      document.getElementById('authButton').addEventListener('click', function(e) {
+        if (!user) {
+          e.preventDefault();
+          window.location.href = 'login1.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaxsiy Kabinet - Xorazm Telefon Bozori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ========== UMUMIY STILLAR ========== */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --gray-color: #95a5a6;
+            --white-color: #ffffff;
+            --black-color: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ========== HEADER STILLARI ========== */
+        .main-header {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo h1 span {
+            color: var(--secondary-color);
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            display: flex;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            border: none;
+            padding: 0 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .user-actions a {
+            color: var(--white-color);
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .user-actions a:hover {
+            color: var(--light-color);
+        }
+
+        .user-actions a i {
+            margin-right: 5px;
+        }
+
+        .cart-count {
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+            margin-left: 5px;
+            display: none;
+        }
+
+        /* ========== NAVIGATSIYA ========== */
+        .main-nav {
+            background-color: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav li {
+            position: relative;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            color: var(--secondary-color);
+        }
+
+        .main-nav a i {
+            margin-right: 8px;
+        }
+
+        /* ========== KABINET SAHIFASI STILLARI ========== */
+        .profile-page {
+            padding: 50px 0;
+            min-height: calc(100vh - 150px);
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        .profile-sidebar {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            height: fit-content;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), #4ca1af);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .profile-email {
+            text-align: center;
+            color: var(--gray-color);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .nav-menu {
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-bottom: 10px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--secondary-color);
+        }
+
+        .nav-menu a i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .profile-content {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .profile-title {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .profile-edit-btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .profile-edit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .info-card {
+            margin-bottom: 30px;
+        }
+
+        .info-card h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .info-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .info-row {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            width: 150px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .info-value {
+            flex: 1;
+            color: var(--gray-color);
+        }
+
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--danger-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .logout-btn i {
+            margin-right: 8px;
+        }
+
+        /* ========== FOOTER ========== */
+        .main-footer {
+            background-color: var(--dark-color);
+            color: var(--white-color);
+            padding: 60px 0 0;
+        }
+
+        .main-footer .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-column p {
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white-color);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: var(--gray-color);
+        }
+
+        /* ========== RESPONSIVE STILLAR ========== */
+        @media (max-width: 992px) {
+            .main-header .container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 15px;
+            }
+            
+            .search-box {
+                margin: 15px 0;
+                max-width: 100%;
+            }
+            
+            .main-nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-sidebar {
+                margin-bottom: 30px;
+            }
+
+            .info-row {
+                flex-direction: column;
+            }
+
+            .info-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .user-actions a {
+                margin-left: 10px;
+                font-size: 14px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .profile-edit-btn {
+                margin-top: 15px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Xorazm<span>Telefon</span></h1>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Mahsulot qidirish...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="user-actions">
+                <a href="savat1.html"><i class="fas fa-shopping-cart"></i> Savat <span class="cart-count">0</span></a>
+                <a href="kabinet1.html"><i class="fas fa-user"></i> Kabinet</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="Bosh1.html"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+                <li><a href="Mahsulotlar1.html"><i class="fas fa-mobile-alt"></i> Telefonlar</a></li>
+                <li><a href="Aksessuarlar1.html"><i class="fas fa-headphones"></i> Aksessuarlar</a></li>
+                <li><a href="#"><i class="fas fa-percentage"></i> Aksiyalar</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> Biz haqimizda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Kabinet Sahifasi Kontenti -->
+    <section class="profile-page">
+        <div class="container profile-container">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-avatar">
+                    <div class="avatar-text" id="avatarText">U</div>
+                </div>
+                <h2 class="profile-name" id="profileName">Foydalanuvchi</h2>
+                <p class="profile-email" id="profileEmail">email@example.com</p>
+                
+                <ul class="nav-menu">
+                    <li><a href="#" class="active"><i class="fas fa-user"></i> Shaxsiy ma'lumotlar</a></li>
+                    <li><a href="Buyurtmalarim1.html"><i class="fas fa-shopping-bag"></i> Buyurtmalarim</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> Sevimlilar</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Manzillar</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> Parolni o'zgartirish</a></li>
+                </ul>
+                
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Profildan chiqish
+                </button>
+            </div>
+            
+            <!-- Asosiy Kontent -->
+            <div class="profile-content">
+                <div class="profile-header">
+                    <h2 class="profile-title">Shaxsiy ma'lumotlar</h2>
+                    <button class="profile-edit-btn" id="editProfileBtn">
+                        <i class="fas fa-edit"></i> Tahrirlash
+                    </button>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Asosiy ma'lumotlar</h3>
+                    <div class="info-row">
+                        <div class="info-label">To'liq ism:</div>
+                        <div class="info-value" id="fullNameValue">Foydalanuvchi</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Telefon:</div>
+                        <div class="info-value" id="phoneValue">+998901234567</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Tug'ilgan sana:</div>
+                        <div class="info-value" id="birthDateValue">01.01.1990</div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Xavfsizlik</h3>
+                    <div class="info-row">
+                        <div class="info-label">Elektron pochta:</div>
+                        <div class="info-value" id="emailValue">email@example.com</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Parol:</div>
+                        <div class="info-value">••••••••</div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Qo'shimcha ma'lumotlar</h3>
+                    <div class="info-row">
+                        <div class="info-label">Ro'yxatdan o'tgan sana:</div>
+                        <div class="info-value" id="regDateValue">01.01.2023</div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-label">Oxirgi faollik:</div>
+                        <div class="info-value" id="lastActivityValue">Hozir</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-column">
+                <h3>Xorazm Telefon</h3>
+                <p>Eng yaxshi narxlarda sifatli telefonlar va aksessuarlar</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Foydali havolalar</h3>
+                <ul>
+                    <li><a href="Bosh1.html">Bosh sahifa</a></li>
+                    <li><a href="Mahsulotlar1.html">Telefonlar</a></li>
+                    <li><a href="Aksessuarlar1.html">Aksessuarlar</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Aloqa</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Urganch shahri, Xorazm</li>
+                    <li><i class="fas fa-phone"></i> +998 91 123 45 67</li>
+                    <li><i class="fas fa-envelope"></i> info@xorazmtelefon.uz</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Xorazm Telefon Bozori. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script>
+        // DOM yuklanganida
+        document.addEventListener('DOMContentLoaded', function() {
+            // Foydalanuvchi ma'lumotlarini olish
+            const currentUser = JSON.parse(localStorage.getItem('currentUser')) || 
+                             JSON.parse(sessionStorage.getItem('currentUser'));
+            
+            // Agar foydalanuvchi kirmagan bo'lsa, kirish sahifasiga yo'naltirish
+            if (!currentUser) {
+                window.location.href = 'login1.html';
+                return;
+            }
+            
+            // Ma'lumotlarni to'ldirish
+            document.getElementById('profileName').textContent = currentUser.fullname || 'Foydalanuvchi';
+            document.getElementById('profileEmail').textContent = currentUser.email || 'email@example.com';
+            document.getElementById('fullNameValue').textContent = currentUser.fullname || 'Foydalanuvchi';
+            document.getElementById('phoneValue').textContent = currentUser.phone || '+998901234567';
+            document.getElementById('emailValue').textContent = currentUser.email || 'email@example.com';
+            
+            // Avatar uchun ismning birinchi harfi
+            const avatarText = currentUser.fullname ? currentUser.fullname.charAt(0).toUpperCase() : 'U';
+            document.getElementById('avatarText').textContent = avatarText;
+            
+            // Ro'yxatdan o'tgan sana
+            const regDate = new Date(currentUser.registeredAt || new Date());
+            document.getElementById('regDateValue').textContent = regDate.toLocaleDateString('uz-UZ');
+            
+            // Chiqish tugmasi
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                localStorage.removeItem('currentUser');
+                sessionStorage.removeItem('currentUser');window.location.href = 'Bosh1.html';
+            });
+            
+            // Tahrirlash tugmasi
+            document.getElementById('editProfileBtn').addEventListener('click', function() {
+                alert('Tahrirlash funksiyasi tez orada qoʻshiladi!');
+                // Keyinchalik bu joyga modal oyna qo'shishingiz mumkin
+            });
+
+            // Savatdagi mahsulotlar sonini yangilash
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+                const cartCount = document.querySelector('.cart-count');
+                
+                if (cartCount) {
+                    cartCount.textContent = totalItems;
+                    cartCount.style.display = totalItems > 0 ? 'inline-block' : 'none';
+                }
+            }
+            
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

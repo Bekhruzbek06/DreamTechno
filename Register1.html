@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roʻyxatdan oʻtish - Xorazm Telefon Bozori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --gray-color: #95a5a6;
+            --white-color: #ffffff;
+            --black-color: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo h1 span {
+            color: var(--secondary-color);
+        }
+
+        /* Register Page Styles */
+        .register-page {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .register-container {
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            background-color: var(--white-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-image {
+            flex: 1;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(231, 76, 60, 0.8)), 
+                        url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: var(--white-color);
+        }
+
+        .register-image h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .register-image p {
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .register-form {
+            flex: 1;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .register-form h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .register-form p {
+            color: var(--gray-color);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(52, 156, 219, 0.2);
+            outline: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            cursor: pointer;
+            color: var(--gray-color);
+        }
+
+        .password-toggle:hover {
+            color: var(--dark-color);
+        }
+
+        .form-error {
+            color: var(--danger-color);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .register-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .register-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--dark-color);
+            color: var(--white-color);
+            padding: 30px 0;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-column p {
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white-color);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: var(--gray-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .register-container {
+                flex-direction: column;
+            }
+            
+            .register-image {
+                padding: 30px;
+            }
+            
+            .register-form {
+                padding: 40px 30px;
+            }
+            
+            .register-image h2,
+            .register-form h2 {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .footer-column {
+                text-align: center;
+            }
+            
+            .footer-column h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .register-form {
+            animation: fadeIn 0.5s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1>Xorazm<span>Telefon</span></h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Register Page Content -->
+    <main class="register-page">
+        <div class="container">
+            <div class="register-container">
+                <!-- Register Image Section -->
+                <div class="register-image">
+                    <h2>Xorazm Telefon Bozoriga Xush Kelibsiz!</h2>
+                    <p>Ro'yxatdan o'ting va eng yaxshi narxlarda sifatli telefonlar va aksessuarlardan bahramand bo'ling!</p>
+                    <div style="width: 100px; height: 4px; background-color: var(--white-color); margin: 20px 0;"></div>
+                    <p>Agar allaqachon hisobingiz bo'lsa, quyidagi tugma orqali tizimga kirishingiz mumkin</p>
+                    <a href="login1.html" style="display: inline-block; padding: 10px 20px; background-color: transparent; border: 2px solid var(--white-color); color: var(--white-color); border-radius: 30px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; margin-top: 10px;">Kirish</a>
+                </div>
+                
+                <!-- Register Form Section -->
+                <div class="register-form">
+                    <h2>Yangi hisob yarating</h2>
+                    <p>Iltimos, quyidagi maydonlarni to'ldiring</p>
+                    
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="fullname">To'liq ismingiz</label>
+                            <input type="text" id="fullname" placeholder="Ism Familiya" required>
+                            <span class="form-error" id="name-error">Iltimos, to'liq ismingizni kiriting</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Elektron pochta</label>
+                            <input type="email" id="email" placeholder="example@mail.com" required>
+                            <span class="form-error" id="email-error">Iltimos, to'g'ri elektron pochta manzilini kiriting</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefon raqam</label>
+                            <input type="tel" id="phone" placeholder="+998901234567" required>
+                            <span class="form-error" id="phone-error">Iltimos, to'g'ri telefon raqamini kiriting</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Parol</label>
+                            <input type="password" id="password" placeholder="Kamida 8 ta belgi" required>
+                            <i class="fas fa-eye password-toggle" id="togglePassword"></i>
+                            <span class="form-error" id="password-error">Parol kamida 8 ta belgidan iborat bo'lishi kerak</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="confirm-password">Parolni tasdiqlang</label>
+                            <input type="password" id="confirm-password" placeholder="Parolni qayta kiriting" required>
+                            <span class="form-error" id="confirm-error">Parollar mos kelmadi</span>
+                        </div>
+                        
+                        <button type="submit" class="register-btn">Ro'yxatdan o'tish</button>
+                        
+                        <div class="login-link">
+                            Allaqachon hisobingiz bormi? <a href="login.html">Tizimga kirish</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <div class="footer-column">
+                <h3>Xorazm Telefon</h3>
+                <p>Eng yaxshi narxlarda sifatli telefonlar va aksessuarlar</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Foydali havolalar</h3>
+                <ul class="footer-links">
+                    <li><a href="Bosh1.html">Bosh sahifa</a></li>
+                    <li><a href="Mahsulotlar1.html">Mahsulotlar</a></li>
+                    <li><a href="#">Aksiyalar</a></li>
+                    <li><a href="#">Biz haqimizda</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Aloqa</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i> Urganch shahri, Xorazm</li>
+                    <li><i class="fas fa-phone"></i> +998 91 123 45 67</li>
+                    <li><i class="fas fa-envelope"></i> info@xorazmtelefon.uz</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Xorazm Telefon Bozori. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script>
+        // DOM yuklanganida
+        document.addEventListener('DOMContentLoaded', function() {
+            // Parolni ko'rsatish/yashirish
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    togglePassword.classList.remove('fa-eye');
+                    togglePassword.classList.add('fa-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    togglePassword.classList.remove('fa-eye-slash');
+                    togglePassword.classList.add('fa-eye');
+                }
+            });
+            
+            // Formani ishga tushirish
+            const registerForm = document.getElementById('registerForm');
+            
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Maydonlarni olish
+                const fullname = document.getElementById('fullname').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+                
+                // Validatsiya
+                let isValid = true;
+                
+                // Ism validatsiyasi
+                if (fullname === '' || fullname.split(' ').length < 2) {
+                    document.getElementById('name-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('name-error').style.display = 'none';
+                }
+                
+                // Email validatsiyasi
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    document.getElementById('email-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('email-error').style.display = 'none';
+                }
+                
+                // Telefon validatsiyasi
+                const phoneRegex = /^\+998\d{9}$/;
+                if (!phoneRegex.test(phone)) {
+                    document.getElementById('phone-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('phone-error').style.display = 'none';
+                }
+                
+                // Parol validatsiyasi
+                if (password.length < 8) {
+                    document.getElementById('password-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('password-error').style.display = 'none';
+                }
+                
+                // Parol tasdiqlash
+                if (password !== confirmPassword) {
+                    document.getElementById('confirm-error').style.display = 'block';
+                    isValid = false;
+                } else {
+                    document.getElementById('confirm-error').style.display = 'none';
+                }
+                
+                // Agar hammasi to'g'ri bo'lsa
+                if (isValid) {
+                    // Foydalanuvchi ma'lumotlarini yaratamiz
+                    const user = {
+                        fullname: fullname,
+                        email: email,
+                        phone: phone,
+                        password: password, // Haqiqiy loyihada parolni heshlab saqlash kerak
+                        registeredAt: new Date().toISOString()
+                    };
+                    
+                    // LocalStoragedan foydalanuvchilarni olamiz yoki yangi ro'yxat yaratamiz
+                    let users = JSON.parse(localStorage.getItem('users')) || [];
+                    
+                    // Elektron pochta allaqachon ro'yxatdan o'tganligini tekshiramiz
+                    const emailExists = users.some(u => u.email === email);
+                    if (emailExists) {
+                        alert('Bu elektron pochta manzili allaqachon ro\'yxatdan o\'tgan');
+                        return;
+                    }
+                    
+                    // Foydalanuvchini qo'shamiz
+                    users.push(user);
+                    localStorage.setItem('users', JSON.stringify(users));
+                    
+                    // Foydalanuvchini kirish sahifasiga yo'naltiramiz
+                    alert('Muvaffaqiyatli ro\'yxatdan o\'tdingiz! Endi tizimga kirishingiz mumkin');
+                    window.location.href = 'login1.html';
+                }
+            });
+        });
+         document.getElementById('registerForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = {
+        fullname: document.getElementById('fullname').value,
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      };
+      
+      let users = JSON.parse(localStorage.getItem('users')) || [];
+      users.push(user);
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      
+      alert("Ro'yxatdan muvaffaqiyatli o'tdingiz!");
+      window.location.href = 'Bosh1.html';
+    });
+    </script>
+</body>
+</html>

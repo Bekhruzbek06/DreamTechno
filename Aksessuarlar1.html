@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aksessuarlar - Xorazm Telefon Bozori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="Bosh1.css"> <!-- Asosiy CSS faylidan foydalanish -->
+    <style>
+        /* Aksessuarlar uchun qo'shimcha stil */
+        .accessory-badge {
+            background-color: var(--accent-color) !important; /* Ko'k rangli yorliq */
+        }
+
+        .filter-group-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-option {
+            padding: 8px 15px;
+            background-color: var(--light-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .filter-option:hover, .filter-option.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <h1>Xorazm<span>Telefon</span></h1>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Aksessuarlarni qidirish..." id="searchInput">
+                <button id="searchButton"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="user-actions">
+                <a href="Bosh1.html"><i class="fas fa-home"></i> Bosh sahifa</a>
+                <a href="Savat1.html"><i class="fas fa-shopping-cart"></i> Savat <span class="cart-count">0</span></a>
+                <a href="Login1.html"><i class="fas fa-user"></i> Kabinet</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="Bosh1.html"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+                <li><a href="Mahsulotlar1.html"><i class="fas fa-mobile-alt"></i> Telefonlar</a></li>
+                <li><a href="Aksessuarlar1.html" class="active"><i class="fas fa-headphones"></i> Aksessuarlar</a></li>
+                <li><a href="#"><i class="fas fa-percentage"></i> Aksiyalar</a></li>
+                <li><a href="#"><i class="fas fa-info-circle"></i> Biz haqimizda</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Aksessuarlar Sahifa Kontenti -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Aksessuarlar</h2>
+            
+            <!-- Filtrlash Qismi -->
+            <div class="filters-section" style="margin-bottom: 30px;">
+                <div class="filter-group">
+                    <div class="filter-group-title">
+                        <span>Kategoriyalar</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-group-content">
+                        <div class="filter-option active">Hammasi</div>
+                        <div class="filter-option">Quloqchinlar</div>
+                        <div class="filter-option">Batareyalar</div>
+                        <div class="filter-option">Qopqoqlar</div>
+                        <div class="filter-option">Simsiz zaryadlovchilar</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aksessuarlar Gridi -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Aksessuar 1 -->
+                <div class="product-card">
+                    <div class="product-badge accessory-badge">Yangi</div>
+                    <div class="product-image">
+                        <img src="images/airpods.jpg" alt="AirPods Pro 2">
+                    </div>
+                    <div class="product-info">
+                        <h3>AirPods Pro 2</h3>
+                        <div class="product-price">
+                            <span class="current-price">1 500 000 so'm</span>
+                            <span class="old-price">1 800 000 so'm</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-sm" onclick="addToCart('AirPods Pro 2', 1500000)">
+                                <i class="fas fa-shopping-cart"></i> Savatga
+                            </button>
+                            <a href="#" class="btn btn-outline">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aksessuar 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/powerbank.jpg" alt="Xiaomi Power Bank 20000mAh">
+                    </div>
+                    <div class="product-info">
+                        <h3>Xiaomi Power Bank 20000mAh</h3>
+                        <div class="product-price">
+                            <span class="current-price">400 000 so'm</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-sm" onclick="addToCart('Xiaomi Power Bank 20000mAh', 400000)">
+                                <i class="fas fa-shopping-cart"></i> Savatga
+                            </button>
+                            <a href="#" class="btn btn-outline">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aksessuar 3 -->
+                <div class="product-card">
+                    <div class="product-badge accessory-badge">Chegirma</div>
+                    <div class="product-image">
+                        <img src="images/phone-case.jpg" alt="iPhone 15 Pro Qopqog'i">
+                    </div>
+                    <div class="product-info">
+                        <h3>iPhone 15 Pro Qopqog'i</h3>
+                        <div class="product-price">
+                            <span class="current-price">120 000 so'm</span>
+                            <span class="old-price">150 000 so'm</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-sm" onclick="addToCart('iPhone 15 Pro Qopqog\'i', 120000)">
+                                <i class="fas fa-shopping-cart"></i> Savatga
+                            </button>
+                            <a href="#" class="btn btn-outline">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aksessuar 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/charger.jpg" alt="Samsung 25W Tez Zaryadlovchi">
+                    </div>
+                    <div class="product-info">
+                        <h3>Samsung 25W Tez Zaryadlovchi</h3>
+                        <div class="product-price">
+                            <span class="current-price">180 000 so'm</span>
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-sm" onclick="addToCart('Samsung 25W Tez Zaryadlovchi', 180000)">
+                                <i class="fas fa-shopping-cart"></i> Savatga
+                            </button>
+                            <a href="#" class="btn btn-outline">Batafsil</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-column">
+                <h3>Xorazm Telefon</h3>
+                <p>Eng yaxshi narxlarda sifatli telefonlar va aksessuarlar</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Foydali havolalar</h3>
+                <ul>
+                    <li><a href="Bosh1.html">Bosh sahifa</a></li>
+                    <li><a href="Mahsulotlar1.html">Telefonlar</a></li>
+                    <li><a href="Aksessuarlar1.html">Aksessuarlar</a></li>
+                    <li><a href="#">Biz haqimizda</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Aloqa</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Urganch shahri, Xorazm</li>
+                    <li><i class="fas fa-phone"></i> +998 91 123 45 67</li>
+                    <li><i class="fas fa-envelope"></i> info@xorazmtelefon.uz</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Xorazm Telefon Bozori. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Savatga qo'shish funksiyasi
+        function addToCart(productName, price) {
+            const product = {
+                name: productName,
+                price: price,
+                quantity: 1,
+                date: new Date().toISOString()
+            };
+
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const existingProduct = cart.find(item => item.name === productName);
+            
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push(product);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            showNotification(`${productName} savatga qo'shildi!`);
+            updateCartCount();
+        }
+
+        // Xabar ko'rsatish
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Savat sonini yangilash
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+            document.querySelector('.cart-count').style.display = totalItems > 0 ? 'inline-block' : 'none';
+        }
+
+        // Filtrlash funksiyasi
+        document.querySelectorAll('.filter-option').forEach(option => {
+            option.addEventListener('click', function() {
+                document.querySelector('.filter-option.active').classList.remove('active');
+                this.classList.add('active');
+                filterAccessories();
+            });
+        });
+
+        function filterAccessories() {
+            const category = document.querySelector('.filter-option.active').textContent;
+            const products = document.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                const title = product.querySelector('h3').textContent.toLowerCase();
+                const isVisible = category === 'Hammasi' || 
+                                 (category === 'Quloqchinlar' && title.includes('airpods')) ||
+                                 (category === 'Batareyalar' && title.includes('power bank')) ||
+                                 (category === 'Qopqoqlar' && title.includes('qopqog')) ||
+                                 (category === 'Simsiz zaryadlovchilar' && title.includes('zaryadlovchi'));
+                
+                product.style.display = isVisible ? 'block' : 'none';
+            });
+        }
+
+        // Qidiruv funksiyasi
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const products = document.querySelectorAll('.product-card');
+            let found = false;
+            
+            products.forEach(product => {
+                const title = product.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    product.style.display = 'block';
+                    found = true;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+            
+            if (!found && searchTerm.trim() !== '') {
+                alert('Siz qidirgan aksessuar topilmadi!');
+            }
+        });
+
+        // Sahifa yuklanganda savat sonini yangilash
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+
+    <style>
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--success-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            opacity: 1;
+        }
+    </style>
+</body>
+</html>

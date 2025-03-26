@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Savat - Xorazm Telefon Bozori</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --gray-color: #95a5a6;
+            --white-color: #ffffff;
+            --black-color: #000000;
+            --border-radius: 8px;
+            --box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo h1 span {
+            color: var(--secondary-color);
+            margin-left: 5px;
+        }
+
+        .logo-icon {
+            margin-right: 5px;
+            color: var(--secondary-color);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-actions a {
+            color: var(--white-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .user-actions a:hover {
+            color: var(--light-color);
+            transform: translateY(-2px);
+        }
+
+        .cart-count {
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        /* Navigation */
+        .main-nav {
+            background-color: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav li {
+            position: relative;
+        }
+
+        .main-nav a {
+            display: block;
+            padding: 8px 13px;
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .main-nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .main-nav a i {
+            margin-right: 8px;
+            font-size: 14px;
+        }
+
+        /* Cart Page Styles */
+        .cart-page {
+            padding: 40px 0;
+            flex: 1;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .cart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .cart-items {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .cart-empty i {
+            font-size: 50px;
+            color: var(--gray-color);
+            margin-bottom: 20px;
+        }
+
+        .cart-empty h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .cart-empty p {
+            color: var(--gray-color);
+            margin-bottom: 20px;
+        }
+
+        .cart-empty .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .cart-empty .btn:hover {
+            background-color: var(--secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            margin-right: 20px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-item-img img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            background-color: #f5f5f5;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .quantity-input {
+            width: 50px;
+            height: 30px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .remove-item {
+            background-color: transparent;
+            border: none;
+            color: var(--danger-color);
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .remove-item:hover {
+            color: var(--danger-light);
+            transform: translateY(-2px);
+        }
+
+        .cart-summary {
+            width: 300px;
+            background-color: var(--white-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .summary-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .summary-label {
+            color: var(--gray-color);
+        }
+
+        .summary-value {
+            font-weight: bold;
+        }
+
+        .summary-total {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-size: 18px;
+        }
+
+        .summary-total .summary-value {
+            color: var(--secondary-color);
+            font-size: 20px;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--success-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--success-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .continue-shopping:hover {
+            color: var(--accent-light);
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column {
+            margin-bottom: 20px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a i {
+            font-size: 14px;
+            width: 18px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-color);
+            font-size: 14px;
+        }
+
+        /* Checkout Modal Styles */
+        .checkout-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            position: relative;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .checkout-modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray-color);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--danger-color);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--success-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(39, 174, 96, 0.3);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--success-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            opacity: 1;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .user-actions {
+                margin-top: 15px;
+            }
+
+            .cart-container {
+                flex-direction: column;
+            }
+
+            .cart-summary {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-item-img {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .cart-item-actions {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 15px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <h1><i class="fas fa-mobile-alt logo-icon"></i>Xorazm<span>Telefon</span></h1>
+            </div>
+            <div class="user-actions">
+                <a href="Bosh1.html"><i class="fas fa-home"></i> <span>Bosh sahifa</span></a>
+                <a href="savat1.html"><i class="fas fa-shopping-cart"></i> <span>Savat</span> <span class="cart-count">0</span></a>
+                <a href="kabinet1.html"><i class="fas fa-user"></i> <span>Kabinet</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container nav-container">
+            <ul>
+                <li><a href="Bosh1.html"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+                <li><a href="Mahsulotlar1.html"><i class="fas fa-mobile-alt"></i> Telefonlar</a></li>
+                <li><a href="Aksessuarlar1.html"><i class="fas fa-headphones"></i> Aksessuarlar</a></li>
+                <li><a href="#"><i class="fas fa-percentage"></i> Aksiyalar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Page Content -->
+    <section class="cart-page">
+        <div class="container">
+            <h1 class="page-title">Sizning savatingiz</h1>
+            
+            <div class="cart-container">
+                <!-- Cart Items Section -->
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be dynamically inserted here -->
+                </div>
+                
+                <!-- Cart Summary Section -->
+                <div class="cart-summary" id="cartSummary">
+                    <h3 class="summary-title">Buyurtma xulosasi</h3>
+                    <div class="summary-row">
+                        <span class="summary-label">Mahsulotlar:</span>
+                        <span class="summary-value" id="itemsCount">0 ta</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Yetkazib berish:</span>
+                        <span class="summary-value">Bepul</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span class="summary-label">Jami:</span>
+                        <span class="summary-value" id="totalPrice">0 so'm</span>
+                    </div>
+                    <button class="checkout-btn" id="checkoutBtn">
+                        <i class="fas fa-credit-card"></i> Buyurtma berish
+                    </button>
+                    
+                    <a href="Mahsulotlar1.html" class="continue-shopping">
+                        <i class="fas fa-shopping-cart"></i> Xaridni davom ettirish
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Xorazm Telefon</h3>
+                    <p>Eng yaxshi narxlarda sifatli telefonlar va aksessuarlar</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Foydali havolalar</h3>
+                    <ul class="footer-links">
+                        <li><a href="Bosh1.html"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+                        <li><a href="Mahsulotlar1.html"><i class="fas fa-mobile-alt"></i> Telefonlar</a></li>
+                        <li><a href="Aksessuarlar1.html"><i class="fas fa-headphones"></i> Aksessuarlar</a></li>
+                        <li><a href="#"><i class="fas fa-percentage"></i> Aksiyalar</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Aloqa</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:+998911234567"><i class="fas fa-phone"></i> +998 91 123 45 67</a></li>
+                        <li><a href="mailto:info@xorazmtelefon.uz"><i class="fas fa-envelope"></i> info@xorazmtelefon.uz</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Urganch shahri, Al-Xorazmiy ko'chasi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ish vaqtlari</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-clock"></i> Dushanba-Juma: 9:00 - 18:00</li>
+                        <li><i class="fas fa-clock"></i> Shanba: 10:00 - 16:00</li>
+                        <li><i class="fas fa-clock"></i> Yakshanba: Dam olish kuni</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Xorazm Telefon Bozori. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeCheckoutModal">&times;</button>
+            <h2>Buyurtma ma'lumotlari</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="name">Ismingiz:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon raqamingiz:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Manzilingiz:</label>
+                    <textarea id="address" name="address" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="payment">To'lov usuli:</label>
+                    <select id="payment" name="payment" required>
+                        <option value="">Tanlang</option>
+                        <option value="Naqd pul">Naqd pul</option>
+                        <option value="Karta orqali">Karta orqali</option>
+                        <option value="Click">Click</option>
+                        <option value="Payme">Payme</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-check-circle"></i> Buyurtmani tasdiqlash
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+    // Har bir sahifaning JavaScript qismiga qo'shing
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+  
+  // Barcha savat ko'rsatkichlarini yangilash
+  document.querySelectorAll('.cart-count-badge, .floating-cart-count, .nav-cart-count, .cart-count')
+    .forEach(el => {
+      el.textContent = totalItems;
+      el.style.display = totalItems > 0 ? 'flex' : 'none';
+    });
+}
+
+// Sahifa yuklanganda va savat o'zgartirilganda yangilash
+document.addEventListener('DOMContentLoaded', updateCartCount);
+window.addEventListener('storage', updateCartCount); // Agar boshqa tabda o'zgartirilsa
+        // DOM yuklanganida
+        document.addEventListener('DOMContentLoaded', function() {
+            // Savatdagi mahsulotlarni yuklash
+            loadCartItems();
+            
+            // Savat sonini yangilash
+            updateCartCount();
+            
+            // Checkout tugmasi
+            document.getElementById('checkoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (cart.length === 0) {
+                    showToast('Savat boʻsh. Iltimos, avval mahsulot qoʻshing!', 'error');
+                    return;
+                }
+                
+                // Modalni ochish
+                document.getElementById('checkoutModal').classList.add('active');
+            });
+            
+            // Modalni yopish
+            document.getElementById('closeCheckoutModal').addEventListener('click', function() {
+                document.getElementById('checkoutModal').classList.remove('active');
+            });
+            
+            // Formani yuborish
+            document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const payment = document.getElementById('payment').value;
+                
+                // Foydalanuvchi ma'lumotlarini olish
+                const currentUser = JSON.parse(localStorage.getItem('currentUser')) || 
+                                 JSON.parse(sessionStorage.getItem('currentUser'));
+                
+                // Buyurtma ma'lumotlarini yaratamiz
+                const order = {
+                    id: Date.now(),
+                    customer: {
+                        name: name,
+                        email: currentUser?.email || '',
+                        phone: phone
+                    },
+                    shippingAddress: {
+                        region: 'Xorazm',
+                        city: 'Urganch',
+                        street: address,
+                        phone: phone
+                    },
+                    paymentMethod: payment,
+                    products: JSON.parse(localStorage.getItem('cart')) || [],
+                    date: new Date().toISOString(),
+                    status: 'pending',
+                    shippingCost: 0
+                };
+                
+                // Buyurtmalarni localStorageda saqlaymiz
+                let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                orders.push(order);
+                localStorage.setItem('orders', JSON.stringify(orders));
+                
+                // Savatni tozalaymiz
+                localStorage.removeItem('cart');
+                
+                // Foydalanuvchiga xabar beramiz
+                showToast(`Hurmatli ${name}, buyurtmangiz qabul qilindi!`, 'success');
+                
+                // Modalni yopamiz
+                document.getElementById('checkoutModal').classList.remove('active');
+                
+                // Sahifani yangilaymiz
+                loadCartItems();
+                updateCartCount();
+                
+                // 1.5 soniyadan keyin bosh sahifaga yo'naltiramiz
+                setTimeout(() => {
+                    window.location.href = "Bosh1.html";
+                }, 1500);
+            });
+        });
+
+        // Savatdagi mahsulotlarni yuklash
+        function loadCartItems() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartSummary = document.getElementById('cartSummary');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            if (cart.length === 0) {
+                // Savat bo'sh bo'lsa
+                cartItemsContainer.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Savat bo'sh</h3>
+                        <p>Siz hali hech qanday mahsulot qo'shmagansiz</p>
+                        <a href="Mahsulotlar1.html" class="btn">Xarid qilishni boshlash</a>
+                    </div>
+                `;
+                cartSummary.style.display = 'none';
+            } else {
+                // Savatda mahsulotlar bo'lsa
+                let itemsHtml = '';
+                let totalPrice = 0;
+                let totalItems = 0;
+                
+                cart.forEach((item, index) => {
+                    totalPrice += item.price * item.quantity;
+                    totalItems += item.quantity;
+                    
+                    itemsHtml += `
+                        <div class="cart-item" data-index="${index}">
+                            <div class="cart-item-img">
+                                ${item.image ? 
+                                    `<img src="${item.image}" alt="${item.name}">` : 
+                                    `<i class="fas fa-mobile-alt"></i>`}
+                            </div>
+                            <div class="cart-item-details">
+                                <h3 class="cart-item-title">${item.name}</h3>
+                                <p class="cart-item-price">${item.price.toLocaleString()} so'm</p>
+                                <div class="cart-item-actions">
+                                    <div class="quantity-control">
+                                        <button class="quantity-btn minus" onclick="updateQuantity(${index}, -1)">-</button>
+                                        <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantityInput(${index}, this.value)">
+                                        <button class="quantity-btn plus" onclick="updateQuantity(${index}, 1)">+</button>
+                                    </div>
+                                    <button class="remove-item" onclick="removeItem(${index})">
+                                        <i class="fas fa-trash"></i> O'chirish
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsContainer.innerHTML = itemsHtml;
+                document.getElementById('itemsCount').textContent = `${totalItems} ta`;
+                document.getElementById('totalPrice').textContent = `${totalPrice.toLocaleString()} so'm`;
+                cartSummary.style.display = 'block';
+            }
+        }
+
+        // Miqdorni o'zgartirish (tugma orqali)
+        function updateQuantity(index, change) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart[index]) {
+                cart[index].quantity += change;
+                
+                // Miqdor 1 dan kam bo'lmasligi kerak
+                if (cart[index].quantity < 1) cart[index].quantity = 1;
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCartItems();
+                updateCartCount();
+            }
+        }
+
+        // Miqdorni o'zgartirish (input orqali)
+        function updateQuantityInput(index, value) {
+            const quantity = parseInt(value);
+            if (!isNaN(quantity) && quantity >= 1) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                if (cart[index]) {
+                    cart[index].quantity = quantity;
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    loadCartItems();
+                    updateCartCount();
+                }
+            }
+        }
+
+        // Mahsulotni o'chirish
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCartItems();
+            updateCartCount();
+            
+            // Foydalanuvchiga xabar berish
+            showNotification('Mahsulot savatdan olib tashlandi');
+        }
+
+        // Savatdagi mahsulotlar sonini yangilash
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            
+            cartCountElements.forEach(el => {
+                el.textContent = totalItems;
+                el.style.display = totalItems > 0 ? 'flex' : 'none';
+            });
+        }
+
+        // Xabar ko'rsatish funksiyasi
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Toast bildirishnomalari
+        function showToast(message, type = 'success') {
+            const background = type === 'success' ? 'linear-gradient(to right, #00b09b, #96c93d)' :
+                              type === 'error' ? 'linear-gradient(to right, #ff416c, #ff4b2b)' :
+                              'linear-gradient(to right, #4b6cb7, #182848)';
+            
+            Toastify({
+                text: message,
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                backgroundColor: background,
+                stopOnFocus: true,
+            }).showToast();
+        }
+    </script>
+</body>
+</html>
