@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Xorazm telefon savdosi – eski va yangi telefonlarni sotish platformasi.">
+<meta name="keywords" content="telefon savdosi, xorazm, telefon bozor, sotish, xarid qilish">
+<meta name="author" content="Behruzbek">
   <title>Xorazm Telefon Bozori</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="Bosh1.css">
@@ -19,9 +22,9 @@
         <button><i class="fas fa-search"></i></button>
       </div>
       <div class="user-actions">
-        <a href="Savat1.html"><i class="fas fa-shopping-cart"></i> Savat   <span class="nav-cart-count" id="navCartCount">0</span></a>
+        <a href="savat1.html"><i class="fas fa-shopping-cart"></i> Savat   <span class="nav-cart-count" id="navCartCount">0</span></a>
           
-        <a href="Kabinet1.html" id="authButton"><i class="fas fa-user"></i> <span id="authText">Kirish</span></a>
+        <a href="Login.html" id="authButton"><i class="fas fa-user"></i> <span id="authText">Kirish</span></a>
       </div>
     </div>
   </header>
@@ -30,7 +33,7 @@
 <nav class="main-nav">
   <div class="container">
     <ul>
-      <li><a href="Bosh1.html"><i class="fas fa-home"></i> Bosh sahifa</a></li>
+      <li><a href="index.html"><i class="fas fa-home"></i> Bosh sahifa</a></li>
       <li><a href="Mahsulotlar1.html"><i class="fas fa-mobile-alt"></i> Telefonlar</a></li>
       <li><a href="Aksessuarlar1.html"><i class="fas fa-headphones"></i> Aksessuarlar</a></li>
       <li>
@@ -195,7 +198,7 @@
       <div class="footer-column">
         <h3>Foydali havolalar</h3>
         <ul>
-          <li><a href="bosh1.html">Bosh sahifa</a></li>
+          <li><a href="index.html">Bosh sahifa</a></li>
           <li><a href="mahsulotlar1.html">Mahsulotlar</a></li>
           <li><a href="#">Aksiyalar</a></li>
           <li><a href="#">Biz haqimizda</a></li>
@@ -228,11 +231,11 @@
       if (user) {
         // Agar foydalanuvchi kirgan bo'lsa
         authText.textContent = 'Kabinet';
-        authButton.href = 'kabinet1.html';
+        authButton.href = 'Kabinet1.html';
       } else {
         // Agar foydalanuvchi kirmagan bo'lsa
         authText.textContent = 'Kirish';
-        authButton.href = 'login1.html';
+        authButton.href = 'Login1.html';
       }
 
       // Savat sonini yangilash
